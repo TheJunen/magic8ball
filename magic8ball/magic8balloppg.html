@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .magic8ballContainer{
+            /* position: absolute;
+            height: 200px;
+            width: 400px;
+            margin: -100px 0 0 -200px;
+            top: 50%;
+            left: 50%; */
+            width: 400px;
+            margin: auto;
+        }
+        .img1{
+            width: 500px
+        }
+        .img2{
+            width: 300px;
+            position: relative;
+            right: 300px;
+        }
+        .adviceContainer{
+        -webkit-box-shadow:0 0 20px blue; 
+        -moz-box-shadow: 0 0 20px blue; 
+        box-shadow:0 0 20px blue;
+            height: 110px;
+            width: 400px;
+            font-size: x-large;
+            font-weight: bold;
+            background-color: orange;
+            color: green;
+            position: relative;
+            bottom: 240px;
+            left: 50px;
+        }
+        .gameInstructions{
+            border: 2px solid;
+            position: relative;
+            bottom: 550px;
+            right: 280px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let app = document.getElementById('app');
+        let adviceContainer = document.getElementById('adviceContainer');
+        let advice8ball = 
+        ["Følg hjertet ditt og vær åpen for kjærlighetens muligheter. Den rette personen kan være nærmere enn du tror.", 
+        "Ditt harde arbeid vil lønne seg. Vær tålmodig og fortsett å streve mot dine mål", 
+        "Lytt til råd fra de rundt deg, men følg likevel ditt eget hjerte når du tar viktige beslutninger.", 
+        "Finn balanse i livet ditt ved å dyrke både indre ro og ytre glede.", 
+        "Vær modig og ta risiko. Noen ganger må du forlate det kjente for å oppdage det ekstraordinære.", 
+        "Søk etter nye muligheter på arbeidsplassen. En spennende reise venter på deg."];
+        let containerAA = '';
+        
+        updateView();
+        function updateView(){
+            let html =  '';
+            html += `
+            <div class="magic8ballContainer">
+                <img class="img1" onclick ="generateRandomAdvice()" src="img/magic8ball.gif"> 
+                <img class="img2" src="img/fortune teller.png">
+                <div class="adviceContainer" id="adviceContainer"></div>
+                <div class="gameInstructions">--> Trykk på ballen for å få gode råd spesielt spådd for deg! </div>
+            </div>
+                `;
+                app.innerHTML = html;
+            }
+            
+            console.log(randomIndex)
+            
+            function generateRandomAdvice(){
+                let randomIndex = Math.floor(Math.random() * advice8ball.length); //generate random Index
+                let randomAdvice = advice8ball[randomIndex]; // get item at the generated index
+                let removeLastIndex = advice8ball.splice(randomIndex, 1); //remove item from array, so it can't be selected again
+                document.getElementById('adviceContainer').innerHTML = randomAdvice;
+            }
+    </script>
+</body>
+</html>
